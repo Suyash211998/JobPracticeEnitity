@@ -1,2 +1,57 @@
-﻿
+﻿@model List<Category>
+
+@{
+    int count = 0;
+
+}
+@if(TempData["success"] != null)
+{
+    <h2>@TempData["success"]</h2>
+}
+<h1>Categories List</h1>
+
+<div class="container row">
+    <div>
+
+    </div>
+    <div class="col-6">
+        <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+            Create New Category
+        </a>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Item Id</th>
+            <th scope="col">Item Name</th>
+            
+            <th scope="col">Category</th>
+            <th scope="col">View</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+
+                <td>
+                    @{
+                        count = count + 1;
+                    } @count
+                </td>
+
+                <td>@category.Name</td>
+                <td>@category.DisplayOrder</td>
+               
+              
+
+                <td><a href="Category/Edit/@category.Id">View</a></td>
+                <td><a href="Category/Delete/@category.Id">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
 
